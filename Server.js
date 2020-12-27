@@ -9,6 +9,8 @@ require('./Config/config');
 
 app.use(cors());
 
+app.use(express.static("storage"));
+
 mongoose.connect(key.url, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -30,7 +32,7 @@ app.use(session({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-app.use("/public", express.static(`${__dirname}/storage`));
+app.use("/static", express.static("storage"));
 
 app.use(require('./Routes/rutas'))
 
