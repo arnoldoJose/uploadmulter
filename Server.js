@@ -4,10 +4,10 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const key = require('./Config/key');
 const app = express();
-const fs = require('fs');
-const { execPath } = require('process');
-
+const cors = require('cors');
 require('./Config/config');
+
+app.use(cors());
 
 mongoose.connect(key.url, {
     useNewUrlParser: true,
