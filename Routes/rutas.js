@@ -9,8 +9,9 @@ res.send("hola")
 })
 
 route.post('/load', upload.single("image"),(req,res) => {
-
-  res.json({body: req.body})
+  if(req.file){
+  res.json({body: req.body, file: req.file.filename});
+  }
 });
 
 
