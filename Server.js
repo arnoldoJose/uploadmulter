@@ -30,8 +30,9 @@ app.use(session({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+app.use("/public", express.static(`${__dirname}/storage`));
+
 app.use(require('./Routes/rutas'))
 
-app.use("/public", express.static(`${__dirname}/storage`));
 
 app.listen(process.env.PORT ,() => console.log('conectado al servidor ' + process.env.PORT));
