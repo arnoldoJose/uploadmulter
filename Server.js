@@ -4,12 +4,13 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const key = require('./Config/key');
 const app = express();
+const path = require('path');
 const cors = require('cors');
 require('./Config/config');
 
 app.use(cors());
 
-app.use(express.static("storage"));
+app.use(express.static("/storage"));
 
 mongoose.connect(key.url, {
     useNewUrlParser: true,
@@ -32,7 +33,7 @@ app.use(session({
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-app.use("/static", express.static("storage"));
+app.use(express.static(path.join(__dirname,'storage/images')));
 
 app.use(require('./Routes/rutas'))
 
